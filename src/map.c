@@ -1519,7 +1519,7 @@ void do_quad(lua_State *L, const map_object *m, const map_object *dm, const map_
 	}
 }
 
-inline void display_map_quad(lua_State *L, int *vert_idx, int *col_idx, map_type *map, int scrollx, int scrolly, int bdx, int bdy, float dz, map_object *m, int i, int j, float a, float seen, int nb_keyframes, bool always_show) ALWAYS_INLINE;
+void display_map_quad(lua_State *L, int *vert_idx, int *col_idx, map_type *map, int scrollx, int scrolly, int bdx, int bdy, float dz, map_object *m, int i, int j, float a, float seen, int nb_keyframes, bool always_show) ALWAYS_INLINE;
 void display_map_quad(lua_State *L, int *vert_idx, int *col_idx, map_type *map, int scrollx, int scrolly, int bdx, int bdy, float dz, map_object *m, int i, int j, float a, float seen, int nb_keyframes, bool always_show)
 {
 	map_object *dm;

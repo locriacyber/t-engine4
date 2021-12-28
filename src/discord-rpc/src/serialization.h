@@ -18,7 +18,7 @@
 
 // if only there was a standard library function for this
 template <size_t Len>
-inline size_t StringCopy(char (&dest)[Len], const char* src)
+size_t StringCopy(char (&dest)[Len], const char* src)
 {
     if (!src || !Len) {
         return 0;
@@ -170,7 +170,7 @@ public:
 
 using JsonValue = rapidjson::GenericValue<UTF8, PoolAllocator>;
 
-inline JsonValue* GetObjMember(JsonValue* obj, const char* name)
+JsonValue* GetObjMember(JsonValue* obj, const char* name)
 {
     if (obj) {
         auto member = obj->FindMember(name);
@@ -181,7 +181,7 @@ inline JsonValue* GetObjMember(JsonValue* obj, const char* name)
     return nullptr;
 }
 
-inline int GetIntMember(JsonValue* obj, const char* name, int notFoundDefault = 0)
+int GetIntMember(JsonValue* obj, const char* name, int notFoundDefault = 0)
 {
     if (obj) {
         auto member = obj->FindMember(name);
@@ -192,7 +192,7 @@ inline int GetIntMember(JsonValue* obj, const char* name, int notFoundDefault = 
     return notFoundDefault;
 }
 
-inline const char* GetStrMember(JsonValue* obj,
+const char* GetStrMember(JsonValue* obj,
                                 const char* name,
                                 const char* notFoundDefault = nullptr)
 {

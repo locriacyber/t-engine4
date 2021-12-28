@@ -56,16 +56,16 @@ static uint32_t parity[4] = {PARITY1, PARITY2, PARITY3, PARITY4};
 /*----------------
   STATIC FUNCTIONS
   ----------------*/
-inline static int idxof(int i);
-inline static void rshift128(w128_t *out,  w128_t const *in, int shift);
-inline static void lshift128(w128_t *out,  w128_t const *in, int shift);
-inline static void gen_rand_all(void);
-inline static void gen_rand_array(w128_t array[], int size);
-inline static uint32_t func1(uint32_t x);
-inline static uint32_t func2(uint32_t x);
+static int idxof(int i);
+static void rshift128(w128_t *out,  w128_t const *in, int shift);
+static void lshift128(w128_t *out,  w128_t const *in, int shift);
+static void gen_rand_all(void);
+static void gen_rand_array(w128_t array[], int size);
+static uint32_t func1(uint32_t x);
+static uint32_t func2(uint32_t x);
 static void period_certification(void);
 #if defined(BIG_ENDIAN64) && !defined(ONLY64)
-inline static void swap(w128_t array[], int size);
+static void swap(w128_t array[], int size);
 #endif
 
 #if defined(ALTIVEC)
@@ -79,11 +79,11 @@ inline static void swap(w128_t array[], int size);
  * in BIG ENDIAN machine.
  */
 #ifdef ONLY64
-inline static int idxof(int i) {
+static int idxof(int i) {
     return i ^ 1;
 }
 #else
-inline static int idxof(int i) {
+static int idxof(int i) {
     return i;
 }
 #endif
@@ -96,7 +96,7 @@ inline static int idxof(int i) {
  * @param shift the shift value
  */
 #ifdef ONLY64
-inline static void rshift128(w128_t *out, w128_t const *in, int shift) {
+static void rshift128(w128_t *out, w128_t const *in, int shift) {
     uint64_t th, tl, oh, ol;
 
     th = ((uint64_t)in->u[2] << 32) | ((uint64_t)in->u[3]);
@@ -111,7 +111,7 @@ inline static void rshift128(w128_t *out, w128_t const *in, int shift) {
     out->u[3] = (uint32_t)oh;
 }
 #else
-inline static void rshift128(w128_t *out, w128_t const *in, int shift) {
+static void rshift128(w128_t *out, w128_t const *in, int shift) {
     uint64_t th, tl, oh, ol;
 
     th = ((uint64_t)in->u[3] << 32) | ((uint64_t)in->u[2]);
@@ -135,7 +135,7 @@ inline static void rshift128(w128_t *out, w128_t const *in, int shift) {
  * @param shift the shift value
  */
 #ifdef ONLY64
-inline static void lshift128(w128_t *out, w128_t const *in, int shift) {
+static void lshift128(w128_t *out, w128_t const *in, int shift) {
     uint64_t th, tl, oh, ol;
 
     th = ((uint64_t)in->u[2] << 32) | ((uint64_t)in->u[3]);
@@ -150,7 +150,7 @@ inline static void lshift128(w128_t *out, w128_t const *in, int shift) {
     out->u[3] = (uint32_t)oh;
 }
 #else
-inline static void lshift128(w128_t *out, w128_t const *in, int shift) {
+static void lshift128(w128_t *out, w128_t const *in, int shift) {
     uint64_t th, tl, oh, ol;
 
     th = ((uint64_t)in->u[3] << 32) | ((uint64_t)in->u[2]);
@@ -175,7 +175,7 @@ inline static void lshift128(w128_t *out, w128_t const *in, int shift) {
  * @param d a 128-bit part of the internal state array
  */
 #ifdef ONLY64
-inline static void do_recursion(w128_t *r, w128_t *a, w128_t *b, w128_t *c,
+static void do_recursion(w128_t *r, w128_t *a, w128_t *b, w128_t *c,
 				w128_t *d) {
     w128_t x;
     w128_t y;
@@ -192,7 +192,7 @@ inline static void do_recursion(w128_t *r, w128_t *a, w128_t *b, w128_t *c,
 	^ (d->u[3] << SL1);
 }
 #else
-inline static void do_recursion(w128_t *r, w128_t *a, w128_t *b, w128_t *c,
+static void do_recursion(w128_t *r, w128_t *a, w128_t *b, w128_t *c,
 				w128_t *d) {
     w128_t x;
     w128_t y;
@@ -215,7 +215,7 @@ inline static void do_recursion(w128_t *r, w128_t *a, w128_t *b, w128_t *c,
  * This function fills the internal state array with pseudorandom
  * integers.
  */
-inline static void gen_rand_all(void) {
+static void gen_rand_all(void) {
     int i;
     w128_t *r1, *r2;
 
@@ -240,7 +240,7 @@ inline static void gen_rand_all(void) {
  * @param array an 128-bit array to be filled by pseudorandom numbers.
  * @param size number of 128-bit pseudorandom numbers to be generated.
  */
-inline static void gen_rand_array(w128_t array[], int size) {
+static void gen_rand_array(w128_t array[], int size) {
     int i, j;
     w128_t *r1, *r2;
 
@@ -274,7 +274,7 @@ inline static void gen_rand_array(w128_t array[], int size) {
 #endif
 
 #if defined(BIG_ENDIAN64) && !defined(ONLY64) && !defined(ALTIVEC)
-inline static void swap(w128_t array[], int size) {
+static void swap(w128_t array[], int size) {
     int i;
     uint32_t x, y;
 
@@ -395,7 +395,7 @@ uint32_t gen_rand32(void) {
  * unless an initialization is again executed.
  * @return 64-bit pseudorandom number
  */
-inline uint64_t gen_rand64(void) {
+uint64_t gen_rand64(void) {
 #if defined(BIG_ENDIAN64) && !defined(ONLY64)
     uint32_t r1, r2;
 #else
@@ -447,7 +447,7 @@ inline uint64_t gen_rand64(void) {
  * memory. Mac OSX doesn't have these functions, but \b malloc of OSX
  * returns the pointer to the aligned memory block.
  */
-inline void fill_array32(uint32_t array[], int size) {
+void fill_array32(uint32_t array[], int size) {
     assert(initialized);
     assert(idx == N32);
     assert(size % 4 == 0);
@@ -483,7 +483,7 @@ inline void fill_array32(uint32_t array[], int size) {
  * memory. Mac OSX doesn't have these functions, but \b malloc of OSX
  * returns the pointer to the aligned memory block.
  */
-inline void fill_array64(uint64_t array[], int size) {
+void fill_array64(uint64_t array[], int size) {
     assert(initialized);
     assert(idx == N32);
     assert(size % 2 == 0);

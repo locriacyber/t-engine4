@@ -1095,7 +1095,7 @@ static void build_subroutines(BuildCtx *ctx)
   |//-- Base library: conversions ------------------------------------------
   |
   |.ffunc tonumber
-  |  // Only handles the number case inline (without a base argument).
+  |  // Only handles the number case (without a base argument).
   |  lw CARG1, HI(BASE)
   |  xori AT, NARGS8:RC, 8
   |  sltiu CARG1, CARG1, LJ_TISNUM

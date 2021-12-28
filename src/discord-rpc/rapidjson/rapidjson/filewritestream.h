@@ -91,7 +91,7 @@ private:
 
 //! Implement specialized version of PutN() with memset() for better performance.
 template<>
-inline void PutN(FileWriteStream& stream, char c, size_t n) {
+void PutN(FileWriteStream& stream, char c, size_t n) {
     stream.PutN(c, n);
 }
 

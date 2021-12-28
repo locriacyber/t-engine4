@@ -61,7 +61,7 @@ typedef GenericMemoryBuffer<> MemoryBuffer;
 
 //! Implement specialized version of PutN() with memset() for better performance.
 template<>
-inline void PutN(MemoryBuffer& memoryBuffer, char c, size_t n) {
+void PutN(MemoryBuffer& memoryBuffer, char c, size_t n) {
     std::memset(memoryBuffer.stack_.Push<char>(n), c, n * sizeof(c));
 }
 

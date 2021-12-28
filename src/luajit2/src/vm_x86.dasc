@@ -1498,7 +1498,7 @@ static void build_subroutines(BuildCtx *ctx)
   |//-- Base library: conversions ------------------------------------------
   |
   |.ffunc tonumber
-  |  // Only handles the number case inline (without a base argument).
+  |  // Only handles the number case (without a base argument).
   |  cmp NARGS:RD, 1+1;  jne ->fff_fallback	// Exactly one argument.
   |  cmp dword [BASE+4], LJ_TISNUM
   |.if DUALNUM
@@ -2682,7 +2682,7 @@ static void build_subroutines(BuildCtx *ctx)
   |.macro .ffunc_bit_sh, name, ins
   |.if DUALNUM
   |  .ffunc_bit name, 1
-  |  // Note: no inline conversion from number for 2nd argument!
+  |  // Note: no conversion from number for 2nd argument!
   |  cmp dword [BASE+12], LJ_TISNUM; jne ->fff_fallback
   |  mov RA, dword [BASE+8]
   |.elif SSE

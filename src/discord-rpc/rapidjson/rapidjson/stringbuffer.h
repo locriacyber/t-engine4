@@ -93,18 +93,18 @@ private:
 typedef GenericStringBuffer<UTF8<> > StringBuffer;
 
 template<typename Encoding, typename Allocator>
-inline void PutReserve(GenericStringBuffer<Encoding, Allocator>& stream, size_t count) {
+void PutReserve(GenericStringBuffer<Encoding, Allocator>& stream, size_t count) {
     stream.Reserve(count);
 }
 
 template<typename Encoding, typename Allocator>
-inline void PutUnsafe(GenericStringBuffer<Encoding, Allocator>& stream, typename Encoding::Ch c) {
+void PutUnsafe(GenericStringBuffer<Encoding, Allocator>& stream, typename Encoding::Ch c) {
     stream.PutUnsafe(c);
 }
 
 //! Implement specialized version of PutN() with memset() for better performance.
 template<>
-inline void PutN(GenericStringBuffer<UTF8<> >& stream, char c, size_t n) {
+void PutN(GenericStringBuffer<UTF8<> >& stream, char c, size_t n) {
     std::memset(stream.stack_.Push<char>(n), c, n * sizeof(c));
 }
 

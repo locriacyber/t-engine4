@@ -13,7 +13,7 @@
 
    PTRFASTCALL - Like PTRCALL, but for low number of arguments.
 
-   inline      - Used for selected internal functions for which inlining
+        - Used for selected internal functions for which inlining
                  may improve performance on some platforms.
 
    Note: Use of these macros is based on judgement, not hard rules,
@@ -59,13 +59,13 @@
 #ifndef XML_MIN_SIZE
 #if !defined(__cplusplus) && !defined(inline)
 #ifdef __GNUC__
-#define inline __inline
+#define __inline
 #endif /* __GNUC__ */
 #endif
 #endif /* XML_MIN_SIZE */
 
 #ifdef __cplusplus
-#define inline inline
+#define inline
 #else
 #ifndef inline
 #define inline

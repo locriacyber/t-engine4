@@ -33,7 +33,7 @@ RAPIDJSON_NAMESPACE_BEGIN
     \note User can make a copy of this function for localization.
         Using switch-case is safer for future modification of error codes.
 */
-inline const RAPIDJSON_ERROR_CHARTYPE* GetParseError_En(ParseErrorCode parseErrorCode) {
+const RAPIDJSON_ERROR_CHARTYPE* GetParseError_En(ParseErrorCode parseErrorCode) {
     switch (parseErrorCode) {
         case kParseErrorNone:                           return RAPIDJSON_ERROR_STRING("No error.");
 

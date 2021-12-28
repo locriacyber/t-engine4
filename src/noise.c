@@ -216,7 +216,7 @@ static int noise_texture2d(lua_State *L)
 	return 1;
 }
 */
-inline static float noise3d(noise_t *n, float x, float y, float z) ALWAYS_INLINE;
+static float noise3d(noise_t *n, float x, float y, float z) ALWAYS_INLINE;
 static float noise3d(noise_t *n, float x, float y, float z)
 {
 	float p[3];

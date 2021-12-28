@@ -161,7 +161,7 @@ struct DiyFp {
     int e;
 };
 
-inline DiyFp GetCachedPowerByIndex(size_t index) {
+DiyFp GetCachedPowerByIndex(size_t index) {
     // 10^-348, 10^-340, ..., 10^340
     static const uint64_t kCachedPowers_F[] = {
         RAPIDJSON_UINT64_C2(0xfa8fd5a0, 0x081c0288), RAPIDJSON_UINT64_C2(0xbaaee17f, 0xa23ebf76),
@@ -223,7 +223,7 @@ inline DiyFp GetCachedPowerByIndex(size_t index) {
     return DiyFp(kCachedPowers_F[index], kCachedPowers_E[index]);
 }
     
-inline DiyFp GetCachedPower(int e, int* K) {
+DiyFp GetCachedPower(int e, int* K) {
 
     //int k = static_cast<int>(ceil((-61 - e) * 0.30102999566398114)) + 374;
     double dk = (-61 - e) * 0.30102999566398114 + 347;  // dk must be positive, so can do ceiling in positive
@@ -237,7 +237,7 @@ inline DiyFp GetCachedPower(int e, int* K) {
     return GetCachedPowerByIndex(index);
 }
 
-inline DiyFp GetCachedPower10(int exp, int *outExp) {
+DiyFp GetCachedPower10(int exp, int *outExp) {
      unsigned index = (static_cast<unsigned>(exp) + 348u) / 8u;
      *outExp = -348 + static_cast<int>(index) * 8;
      return GetCachedPowerByIndex(index);

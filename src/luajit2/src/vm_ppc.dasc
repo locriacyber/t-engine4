@@ -1339,7 +1339,7 @@ static void build_subroutines(BuildCtx *ctx)
   |//-- Base library: conversions ------------------------------------------
   |
   |.ffunc tonumber
-  |  // Only handles the number case inline (without a base argument).
+  |  // Only handles the number case (without a base argument).
   |  cmplwi NARGS8:RC, 8
   |   lwz CARG1, 0(BASE)
   |    lfd FARG1, 0(BASE)
@@ -2326,7 +2326,7 @@ static void build_subroutines(BuildCtx *ctx)
   |.if DUALNUM
   |  .ffunc_2 bit_..name
   |  checknum CARG3; bnel ->fff_tobit_fb
-  |  // Note: no inline conversion from number for 2nd argument!
+  |  // Note: no conversion from number for 2nd argument!
   |  checknum CARG4; bne ->fff_fallback
   |.else
   |  .ffunc_nn bit_..name

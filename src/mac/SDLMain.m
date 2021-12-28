@@ -167,7 +167,7 @@ static void CustomApplicationMain (int argc, char **argv)
  *
  * This message may be received multiple times to open several docs on launch.
  *
- * This message is ignored once the app's mainline has been called.
+ * This message is ignored once the app's mahas been called.
  */
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
 {
@@ -209,7 +209,7 @@ int tengine_main(int, char **);
     int status;
 
     /* Hand off to main application code */
-    gCalledAppMainline = TRUE;
+    gCalledAppMa= TRUE;
     status = tengine_main (gArgc, gArgv);
 
     /* We're done, thank you for playing */

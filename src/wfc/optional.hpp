@@ -116,25 +116,25 @@ struct in_place_index_tag {};
 struct in_place_t {};
 
 template< class T >
-inline in_place_t in_place( detail::in_place_type_tag<T> = detail::in_place_type_tag<T>() )
+in_place_t in_place( detail::in_place_type_tag<T> = detail::in_place_type_tag<T>() )
 {
     return in_place_t();
 }
 
 template< std::size_t K >
-inline in_place_t in_place( detail::in_place_index_tag<K> = detail::in_place_index_tag<K>() )
+in_place_t in_place( detail::in_place_index_tag<K> = detail::in_place_index_tag<K>() )
 {
     return in_place_t();
 }
 
 template< class T >
-inline in_place_t in_place_type( detail::in_place_type_tag<T> = detail::in_place_type_tag<T>() )
+in_place_t in_place_type( detail::in_place_type_tag<T> = detail::in_place_type_tag<T>() )
 {
     return in_place_t();
 }
 
 template< std::size_t K >
-inline in_place_t in_place_index( detail::in_place_index_tag<K> = detail::in_place_index_tag<K>() )
+in_place_t in_place_index( detail::in_place_index_tag<K> = detail::in_place_index_tag<K>() )
 {
     return in_place_t();
 }
@@ -1276,37 +1276,37 @@ private:
 // Relational operators
 
 template< typename T, typename U >
-inline optional_constexpr bool operator==( optional<T> const & x, optional<U> const & y )
+optional_constexpr bool operator==( optional<T> const & x, optional<U> const & y )
 {
     return bool(x) != bool(y) ? false : !bool( x ) ? true : *x == *y;
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator!=( optional<T> const & x, optional<U> const & y )
+optional_constexpr bool operator!=( optional<T> const & x, optional<U> const & y )
 {
     return !(x == y);
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator<( optional<T> const & x, optional<U> const & y )
+optional_constexpr bool operator<( optional<T> const & x, optional<U> const & y )
 {
     return (!y) ? false : (!x) ? true : *x < *y;
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator>( optional<T> const & x, optional<U> const & y )
+optional_constexpr bool operator>( optional<T> const & x, optional<U> const & y )
 {
     return (y < x);
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator<=( optional<T> const & x, optional<U> const & y )
+optional_constexpr bool operator<=( optional<T> const & x, optional<U> const & y )
 {
     return !(y < x);
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator>=( optional<T> const & x, optional<U> const & y )
+optional_constexpr bool operator>=( optional<T> const & x, optional<U> const & y )
 {
     return !(x < y);
 }
@@ -1314,73 +1314,73 @@ inline optional_constexpr bool operator>=( optional<T> const & x, optional<U> co
 // Comparison with nullopt
 
 template< typename T >
-inline optional_constexpr bool operator==( optional<T> const & x, nullopt_t ) optional_noexcept
+optional_constexpr bool operator==( optional<T> const & x, nullopt_t ) optional_noexcept
 {
     return (!x);
 }
 
 template< typename T >
-inline optional_constexpr bool operator==( nullopt_t, optional<T> const & x ) optional_noexcept
+optional_constexpr bool operator==( nullopt_t, optional<T> const & x ) optional_noexcept
 {
     return (!x);
 }
 
 template< typename T >
-inline optional_constexpr bool operator!=( optional<T> const & x, nullopt_t ) optional_noexcept
+optional_constexpr bool operator!=( optional<T> const & x, nullopt_t ) optional_noexcept
 {
     return bool(x);
 }
 
 template< typename T >
-inline optional_constexpr bool operator!=( nullopt_t, optional<T> const & x ) optional_noexcept
+optional_constexpr bool operator!=( nullopt_t, optional<T> const & x ) optional_noexcept
 {
     return bool(x);
 }
 
 template< typename T >
-inline optional_constexpr bool operator<( optional<T> const &, nullopt_t ) optional_noexcept
+optional_constexpr bool operator<( optional<T> const &, nullopt_t ) optional_noexcept
 {
     return false;
 }
 
 template< typename T >
-inline optional_constexpr bool operator<( nullopt_t, optional<T> const & x ) optional_noexcept
+optional_constexpr bool operator<( nullopt_t, optional<T> const & x ) optional_noexcept
 {
     return bool(x);
 }
 
 template< typename T >
-inline optional_constexpr bool operator<=( optional<T> const & x, nullopt_t ) optional_noexcept
+optional_constexpr bool operator<=( optional<T> const & x, nullopt_t ) optional_noexcept
 {
     return (!x);
 }
 
 template< typename T >
-inline optional_constexpr bool operator<=( nullopt_t, optional<T> const & ) optional_noexcept
+optional_constexpr bool operator<=( nullopt_t, optional<T> const & ) optional_noexcept
 {
     return true;
 }
 
 template< typename T >
-inline optional_constexpr bool operator>( optional<T> const & x, nullopt_t ) optional_noexcept
+optional_constexpr bool operator>( optional<T> const & x, nullopt_t ) optional_noexcept
 {
     return bool(x);
 }
 
 template< typename T >
-inline optional_constexpr bool operator>( nullopt_t, optional<T> const & ) optional_noexcept
+optional_constexpr bool operator>( nullopt_t, optional<T> const & ) optional_noexcept
 {
     return false;
 }
 
 template< typename T >
-inline optional_constexpr bool operator>=( optional<T> const &, nullopt_t ) optional_noexcept
+optional_constexpr bool operator>=( optional<T> const &, nullopt_t ) optional_noexcept
 {
     return true;
 }
 
 template< typename T >
-inline optional_constexpr bool operator>=( nullopt_t, optional<T> const & x ) optional_noexcept
+optional_constexpr bool operator>=( nullopt_t, optional<T> const & x ) optional_noexcept
 {
     return (!x);
 }
@@ -1388,73 +1388,73 @@ inline optional_constexpr bool operator>=( nullopt_t, optional<T> const & x ) op
 // Comparison with T
 
 template< typename T, typename U >
-inline optional_constexpr bool operator==( optional<T> const & x, U const & v )
+optional_constexpr bool operator==( optional<T> const & x, U const & v )
 {
     return bool(x) ? *x == v : false;
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator==( U const & v, optional<T> const & x )
+optional_constexpr bool operator==( U const & v, optional<T> const & x )
 {
     return bool(x) ? v == *x : false;
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator!=( optional<T> const & x, U const & v )
+optional_constexpr bool operator!=( optional<T> const & x, U const & v )
 {
     return bool(x) ? *x != v : true;
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator!=( U const & v, optional<T> const & x )
+optional_constexpr bool operator!=( U const & v, optional<T> const & x )
 {
     return bool(x) ? v != *x : true;
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator<( optional<T> const & x, U const & v )
+optional_constexpr bool operator<( optional<T> const & x, U const & v )
 {
     return bool(x) ? *x < v : true;
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator<( U const & v, optional<T> const & x )
+optional_constexpr bool operator<( U const & v, optional<T> const & x )
 {
     return bool(x) ? v < *x : false;
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator<=( optional<T> const & x, U const & v )
+optional_constexpr bool operator<=( optional<T> const & x, U const & v )
 {
     return bool(x) ? *x <= v : true;
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator<=( U const & v, optional<T> const & x )
+optional_constexpr bool operator<=( U const & v, optional<T> const & x )
 {
     return bool(x) ? v <= *x : false;
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator>( optional<T> const & x, U const & v )
+optional_constexpr bool operator>( optional<T> const & x, U const & v )
 {
     return bool(x) ? *x > v : false;
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator>( U const & v, optional<T> const & x )
+optional_constexpr bool operator>( U const & v, optional<T> const & x )
 {
     return bool(x) ? v > *x : true;
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator>=( optional<T> const & x, U const & v )
+optional_constexpr bool operator>=( optional<T> const & x, U const & v )
 {
     return bool(x) ? *x >= v : false;
 }
 
 template< typename T, typename U >
-inline optional_constexpr bool operator>=( U const & v, optional<T> const & x )
+optional_constexpr bool operator>=( U const & v, optional<T> const & x )
 {
     return bool(x) ? v >= *x : true;
 }

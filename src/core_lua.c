@@ -1395,7 +1395,7 @@ typedef struct
 {
 	int x, y;
 } Vector;
-static inline float clamp(float val, float min, float max) { return val < min ? min : (val > max ? max : val); }
+static float clamp(float val, float min, float max) { return val < min ? min : (val > max ? max : val); }
 static void build_sdm_ex(const unsigned char *texData, int srcWidth, int srcHeight, unsigned char *sdmTexData, int dstWidth, int dstHeight, int dstx, int dsty)
 {
 

@@ -42,7 +42,7 @@
 #else
   #include <inttypes.h>
   #if defined(__GNUC__)
-    #define inline __inline__
+    #define __inline__
   #endif
 #endif
 
@@ -81,59 +81,59 @@ uint32_t rand_div(uint32_t m);
 
 /* These real versions are due to Isaku Wada */
 /** generates a random number on [0,1]-real-interval */
-inline static double to_real1(uint32_t v)
+static double to_real1(uint32_t v)
 {
     return v * (1.0/4294967295.0);
     /* divided by 2^32-1 */
 }
 
 /** generates a random number on [0,1]-real-interval */
-inline static double genrand_real1(void)
+static double genrand_real1(void)
 {
     return to_real1(gen_rand32());
 }
 
 /** generates a random number on [-1,1]-real-interval */
-inline static double genrand_real(double min, double max)
+static double genrand_real(double min, double max)
 {
     return gen_rand32() * ((max-min)/4294967295.0)+min;
 }
 
 /** generates a random number on [0,1)-real-interval */
-inline static double to_real2(uint32_t v)
+static double to_real2(uint32_t v)
 {
     return v * (1.0/4294967296.0);
     /* divided by 2^32 */
 }
 
 /** generates a random number on [0,1)-real-interval */
-inline static double genrand_real2(void)
+static double genrand_real2(void)
 {
     return to_real2(gen_rand32());
 }
 
 /** generates a random number on (0,1)-real-interval */
-inline static double to_real3(uint32_t v)
+static double to_real3(uint32_t v)
 {
     return (((double)v) + 0.5)*(1.0/4294967296.0);
     /* divided by 2^32 */
 }
 
 /** generates a random number on (0,1)-real-interval */
-inline static double genrand_real3(void)
+static double genrand_real3(void)
 {
     return to_real3(gen_rand32());
 }
 /** These real versions are due to Isaku Wada */
 
 /** generates a random number on [0,1) with 53-bit resolution*/
-inline static double to_res53(uint64_t v)
+static double to_res53(uint64_t v)
 {
     return v * (1.0/18446744073709551616.0L);
 }
 
 /** generates a random number on [0,1) with 53-bit resolution*/
-inline static double genrand_res53(void)
+static double genrand_res53(void)
 {
     return to_res53(gen_rand64());
 }

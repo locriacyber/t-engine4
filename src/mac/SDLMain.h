@@ -21,7 +21,7 @@ extern OSErr CPSSetFrontProcess( CPSProcessSerNum *psn);
 static int gArgc;
 static char **gArgv;
 static BOOL gFinderLaunch;
-static BOOL gCalledAppMainline = FALSE;
+static BOOL gCalledAppMa= FALSE;
 
 @interface SDLApplication : NSApplication
 @end

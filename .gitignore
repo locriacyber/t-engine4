@@ -1,4 +1,5 @@
 /bin/
-/object/
+/obj/
 /build/*.make
 /t-engine
+/

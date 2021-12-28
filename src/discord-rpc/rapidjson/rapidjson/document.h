@@ -343,7 +343,7 @@ private:
     \see GenericValue::GenericValue(StringRefType), GenericValue::operator=(StringRefType), GenericValue::SetString(StringRefType), GenericValue::PushBack(StringRefType, Allocator&), GenericValue::AddMember
 */
 template<typename CharType>
-inline GenericStringRef<CharType> StringRef(const CharType* str) {
+GenericStringRef<CharType> StringRef(const CharType* str) {
     return GenericStringRef<CharType>(str, internal::StrLen(str));
 }
 
@@ -363,7 +363,7 @@ inline GenericStringRef<CharType> StringRef(const CharType* str) {
     \relatesalso GenericStringRef
 */
 template<typename CharType>
-inline GenericStringRef<CharType> StringRef(const CharType* str, size_t length) {
+GenericStringRef<CharType> StringRef(const CharType* str, size_t length) {
     return GenericStringRef<CharType>(str, SizeType(length));
 }
 
@@ -381,7 +381,7 @@ inline GenericStringRef<CharType> StringRef(const CharType* str, size_t length) 
     \note Requires the definition of the preprocessor symbol \ref RAPIDJSON_HAS_STDSTRING.
 */
 template<typename CharType>
-inline GenericStringRef<CharType> StringRef(const std::basic_string<CharType>& str) {
+GenericStringRef<CharType> StringRef(const std::basic_string<CharType>& str) {
     return GenericStringRef<CharType>(str.data(), SizeType(str.size()));
 }
 #endif
@@ -834,7 +834,7 @@ public:
         \endcode
         \see Swap()
      */
-    friend inline void swap(GenericValue& a, GenericValue& b) RAPIDJSON_NOEXCEPT { a.Swap(b); }
+    friend void swap(GenericValue& a, GenericValue& b) RAPIDJSON_NOEXCEPT { a.Swap(b); }
 
     //! Prepare Value for move semantics
     /*! \return *this */
@@ -1866,14 +1866,14 @@ private:
     // the string terminator as well. For getting the string length back from that value just use
     // "MaxSize - str[LenPos]".
     // This allows to store 13-chars strings in 32-bit mode, 21-chars strings in 64-bit mode,
-    // 13-chars strings for RAPIDJSON_48BITPOINTER_OPTIMIZATION=1 inline (for `UTF8`-encoded strings).
+    // 13-chars strings for RAPIDJSON_48BITPOINTER_OPTIMIZATION=1 (for `UTF8`-encoded strings).
     struct ShortString {
         enum { MaxChars = sizeof(static_cast<Flag*>(0)->payload) / sizeof(Ch), MaxSize = MaxChars - 1, LenPos = MaxSize };
         Ch str[MaxChars];
 
-        inline static bool Usable(SizeType len) { return                       (MaxSize >= len); }
-        inline void     SetLength(SizeType len) { str[LenPos] = static_cast<Ch>(MaxSize -  len); }
-        inline SizeType GetLength() const       { return  static_cast<SizeType>(MaxSize -  str[LenPos]); }
+        static bool Usable(SizeType len) { return                       (MaxSize >= len); }
+        void     SetLength(SizeType len) { str[LenPos] = static_cast<Ch>(MaxSize -  len); }
+        SizeType GetLength() const       { return  static_cast<SizeType>(MaxSize -  str[LenPos]); }
     };  // at most as many bytes as "String" above => 12 bytes in 32-bit mode, 16 bytes in 64-bit mode
 
     // By using proper binary layout, retrieval of different integer types do not need conversions.
@@ -2124,7 +2124,7 @@ public:
         \endcode
         \see Swap()
      */
-    friend inline void swap(GenericDocument& a, GenericDocument& b) RAPIDJSON_NOEXCEPT { a.Swap(b); }
+    friend void swap(GenericDocument& a, GenericDocument& b) RAPIDJSON_NOEXCEPT { a.Swap(b); }
 
     //! Populate this document by a generator which produces SAX events.
     /*! \tparam Generator A functor with <tt>bool f(Handler)</tt> prototype.

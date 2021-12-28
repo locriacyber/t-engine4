@@ -23,7 +23,7 @@
 RAPIDJSON_NAMESPACE_BEGIN
 namespace internal {
 
-inline double FastPath(double significand, int exp) {
+double FastPath(double significand, int exp) {
     if (exp < -308)
         return 0.0;
     else if (exp >= 0)
@@ -32,7 +32,7 @@ inline double FastPath(double significand, int exp) {
         return significand / internal::Pow10(-exp);
 }
 
-inline double StrtodNormalPrecision(double d, int p) {
+double StrtodNormalPrecision(double d, int p) {
     if (p < -308) {
         // Prevent expSum < -308, making Pow10(p) = 0
         d = FastPath(d, -308);
@@ -44,14 +44,14 @@ inline double StrtodNormalPrecision(double d, int p) {
 }
 
 template <typename T>
-inline T Min3(T a, T b, T c) {
+T Min3(T a, T b, T c) {
     T m = a;
     if (m > b) m = b;
     if (m > c) m = c;
     return m;
 }
 
-inline int CheckWithinHalfULP(double b, const BigInteger& d, int dExp) {
+int CheckWithinHalfULP(double b, const BigInteger& d, int dExp) {
     const Double db(b);
     const uint64_t bInt = db.IntegerSignificand();
     const int bExp = db.IntegerExponent();
@@ -108,7 +108,7 @@ inline int CheckWithinHalfULP(double b, const BigInteger& d, int dExp) {
     return delta.Compare(hS);
 }
 
-inline bool StrtodFast(double d, int p, double* result) {
+bool StrtodFast(double d, int p, double* result) {
     // Use fast path for string-to-double conversion if possible
     // see http://www.exploringbinary.com/fast-path-decimal-to-floating-point-conversion/
     if (p > 22  && p < 22 + 16) {
@@ -126,7 +126,7 @@ inline bool StrtodFast(double d, int p, double* result) {
 }
 
 // Compute an approximation and see if it is within 1/2 ULP
-inline bool StrtodDiyFp(const char* decimals, size_t length, size_t decimalPosition, int exp, double* result) {
+bool StrtodDiyFp(const char* decimals, size_t length, size_t decimalPosition, int exp, double* result) {
     uint64_t significand = 0;
     size_t i = 0;   // 2^64 - 1 = 18446744073709551615, 1844674407370955161 = 0x1999999999999999    
     for (; i < length; i++) {
@@ -203,7 +203,7 @@ inline bool StrtodDiyFp(const char* decimals, size_t length, size_t decimalPosit
     return halfWay - static_cast<unsigned>(error) >= precisionBits || precisionBits >= halfWay + static_cast<unsigned>(error);
 }
 
-inline double StrtodBigInteger(double approx, const char* decimals, size_t length, size_t decimalPosition, int exp) {
+double StrtodBigInteger(double approx, const char* decimals, size_t length, size_t decimalPosition, int exp) {
     const BigInteger dInt(decimals, length);
     const int dExp = static_cast<int>(decimalPosition) - static_cast<int>(length) + exp;
     Double a(approx);
@@ -221,7 +221,7 @@ inline double StrtodBigInteger(double approx, const char* decimals, size_t lengt
         return a.NextPositiveDouble();
 }
 
-inline double StrtodFullPrecision(double d, int p, const char* decimals, size_t length, size_t decimalPosition, int exp) {
+double StrtodFullPrecision(double d, int p, const char* decimals, size_t length, size_t decimalPosition, int exp) {
     RAPIDJSON_ASSERT(d >= 0.0);
     RAPIDJSON_ASSERT(length >= 1);
 

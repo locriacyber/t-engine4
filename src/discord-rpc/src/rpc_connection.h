@@ -50,7 +50,7 @@ struct RpcConnection {
     static RpcConnection* Create(const char* applicationId);
     static void Destroy(RpcConnection*&);
 
-    inline bool IsOpen() const { return state == State::Connected; }
+    bool IsOpen() const { return state == State::Connected; }
 
     void Open();
     void Close();

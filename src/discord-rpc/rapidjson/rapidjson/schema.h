@@ -77,27 +77,27 @@ RAPIDJSON_NAMESPACE_BEGIN
 
 namespace internal {
 
-inline void PrintInvalidKeyword(const char* keyword) {
+void PrintInvalidKeyword(const char* keyword) {
     printf("Fail keyword: %s\n", keyword);
 }
 
-inline void PrintInvalidKeyword(const wchar_t* keyword) {
+void PrintInvalidKeyword(const wchar_t* keyword) {
     wprintf(L"Fail keyword: %ls\n", keyword);
 }
 
-inline void PrintInvalidDocument(const char* document) {
+void PrintInvalidDocument(const char* document) {
     printf("Fail document: %s\n\n", document);
 }
 
-inline void PrintInvalidDocument(const wchar_t* document) {
+void PrintInvalidDocument(const wchar_t* document) {
     wprintf(L"Fail document: %ls\n\n", document);
 }
 
-inline void PrintValidatorPointers(unsigned depth, const char* s, const char* d) {
+void PrintValidatorPointers(unsigned depth, const char* s, const char* d) {
     printf("S: %*s%s\nD: %*s%s\n\n", depth * 4, " ", s, depth * 4, " ", d);
 }
 
-inline void PrintValidatorPointers(unsigned depth, const wchar_t* s, const wchar_t* d) {
+void PrintValidatorPointers(unsigned depth, const wchar_t* s, const wchar_t* d) {
     wprintf(L"S: %*ls%ls\nD: %*ls%ls\n\n", depth * 4, L" ", s, depth * 4, L" ", d);
 }
 

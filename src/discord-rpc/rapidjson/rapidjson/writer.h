@@ -475,7 +475,7 @@ private:
 // Full specialization for StringStream to prevent memory copying
 
 template<>
-inline bool Writer<StringBuffer>::WriteInt(int i) {
+bool Writer<StringBuffer>::WriteInt(int i) {
     char *buffer = os_->Push(11);
     const char* end = internal::i32toa(i, buffer);
     os_->Pop(static_cast<size_t>(11 - (end - buffer)));
@@ -483,7 +483,7 @@ inline bool Writer<StringBuffer>::WriteInt(int i) {
 }
 
 template<>
-inline bool Writer<StringBuffer>::WriteUint(unsigned u) {
+bool Writer<StringBuffer>::WriteUint(unsigned u) {
     char *buffer = os_->Push(10);
     const char* end = internal::u32toa(u, buffer);
     os_->Pop(static_cast<size_t>(10 - (end - buffer)));
@@ -491,7 +491,7 @@ inline bool Writer<StringBuffer>::WriteUint(unsigned u) {
 }
 
 template<>
-inline bool Writer<StringBuffer>::WriteInt64(int64_t i64) {
+bool Writer<StringBuffer>::WriteInt64(int64_t i64) {
     char *buffer = os_->Push(21);
     const char* end = internal::i64toa(i64, buffer);
     os_->Pop(static_cast<size_t>(21 - (end - buffer)));
@@ -499,7 +499,7 @@ inline bool Writer<StringBuffer>::WriteInt64(int64_t i64) {
 }
 
 template<>
-inline bool Writer<StringBuffer>::WriteUint64(uint64_t u) {
+bool Writer<StringBuffer>::WriteUint64(uint64_t u) {
     char *buffer = os_->Push(20);
     const char* end = internal::u64toa(u, buffer);
     os_->Pop(static_cast<size_t>(20 - (end - buffer)));
@@ -507,7 +507,7 @@ inline bool Writer<StringBuffer>::WriteUint64(uint64_t u) {
 }
 
 template<>
-inline bool Writer<StringBuffer>::WriteDouble(double d) {
+bool Writer<StringBuffer>::WriteDouble(double d) {
     if (internal::Double(d).IsNanOrInf()) {
         // Note: This code path can only be reached if (RAPIDJSON_WRITE_DEFAULT_FLAGS & kWriteNanAndInfFlag).
         if (!(kWriteDefaultFlags & kWriteNanAndInfFlag))
@@ -536,7 +536,7 @@ inline bool Writer<StringBuffer>::WriteDouble(double d) {
 
 #if defined(RAPIDJSON_SSE2) || defined(RAPIDJSON_SSE42)
 template<>
-inline bool Writer<StringBuffer>::ScanWriteUnescapedString(StringStream& is, size_t length) {
+bool Writer<StringBuffer>::ScanWriteUnescapedString(StringStream& is, size_t length) {
     if (length < 16)
         return RAPIDJSON_LIKELY(is.Tell() < length);
 

@@ -1,7 +1,7 @@
 #ifndef __SHADERS_H
 #define __SHADERS_H
 
-inline bool _CheckGL_Error(const char* GLcall, const char* file, const int line) ALWAYS_INLINE;
+bool _CheckGL_Error(const char* GLcall, const char* file, const int line) ALWAYS_INLINE;
 bool _CheckGL_Error(const char* GLcall, const char* file, const int line)
 {
     GLenum errCode;
@@ -14,7 +14,7 @@ bool _CheckGL_Error(const char* GLcall, const char* file, const int line)
     return TRUE;
 }
 
-inline bool _CheckGLSLShaderCompile(GLuint shader, const char* file) ALWAYS_INLINE;
+bool _CheckGLSLShaderCompile(GLuint shader, const char* file) ALWAYS_INLINE;
 bool _CheckGLSLShaderCompile(GLuint shader, const char* file)
 {
 	int success;
@@ -52,7 +52,7 @@ bool _CheckGLSLShaderCompile(GLuint shader, const char* file)
 	return TRUE;
 }
 
-inline bool _CheckGLSLProgramLink(GLuint program) ALWAYS_INLINE;
+bool _CheckGLSLProgramLink(GLuint program) ALWAYS_INLINE;
 bool _CheckGLSLProgramLink(GLuint program)
 {
 	int success;
@@ -77,7 +77,7 @@ bool _CheckGLSLProgramLink(GLuint program)
 	return TRUE;
 }
 
-inline bool _CheckGLSLProgramValid(GLuint program) ALWAYS_INLINE;
+bool _CheckGLSLProgramValid(GLuint program) ALWAYS_INLINE;
 bool _CheckGLSLProgramValid(GLuint program)
 {
 	int success;
