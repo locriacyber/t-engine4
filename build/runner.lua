@@ -26,20 +26,20 @@ project "TEngineRunner"
 
 	configuration "linux"
 		links { "dl", "SDL", "SDL_ttf", "SDL_image", "SDL_mixer", "GL", "GLU", "m", "pthread" }
-		defines { [[TENGINE_HOME_PATH='".t-engine"']], 'SELFEXE_LINUX'  }
+		defines { [[TENGINE_HOME_PATH=".t-engine"]], 'SELFEXE_LINUX'  }
 
 	configuration "bsd"
 		links { "SDL", "SDL_ttf", "SDL_image", "SDL_mixer", "GL", "GLU", "m", "pthread" }
-		defines { [[TENGINE_HOME_PATH='".t-engine"']], 'SELFEXE_BSD'  }
+		defines { [[TENGINE_HOME_PATH=".t-engine"]], 'SELFEXE_BSD'  }
 
 	configuration "windows"
 		links { "mingw32", "SDLmain", "SDL", "SDL_ttf", "SDL_image", "SDL_mixer", "OPENGL32", "GLU32", "wsock32" }
-		defines { [[TENGINE_HOME_PATH='"T-Engine"']], 'SELFEXE_WINDOWS'  }
+		defines { [[TENGINE_HOME_PATH="T-Engine"]], 'SELFEXE_WINDOWS'  }
 		prebuildcommands { "windres ../src/windows/icon.rc -O coff -o ../src/windows/icon.res" }
 		linkoptions { "../src/windows/icon.res" }
 
 	configuration "macosx"
-		defines { [[TENGINE_HOME_PATH='".t-engine"']], "USE_TENGINE_MAIN", 'SELFEXE_MACOSX'  }
+		defines { [[TENGINE_HOME_PATH=".t-engine"]], "USE_TENGINE_MAIN", 'SELFEXE_MACOSX'  }
 		linkoptions { "-framework SDL", "-framework SDL_image", "-framework SDL_ttf", "-framework SDL_mixer", "-framework Cocoa", "-framework OpenGL" }
         	links { "IOKit" }
 
@@ -59,14 +59,14 @@ project "te4runner"
 	links { "runner-physfs", "runner-lua", "m" }
 
 	configuration "linux"
-		defines { [[TENGINE_HOME_PATH='".t-engine"']], 'SELFEXE_LINUX'  }
+		defines { [[TENGINE_HOME_PATH=".t-engine"]], 'SELFEXE_LINUX'  }
 	configuration "bsd"
-		defines { [[TENGINE_HOME_PATH='".t-engine"']], 'SELFEXE_BSD'  }
+		defines { [[TENGINE_HOME_PATH=".t-engine"]], 'SELFEXE_BSD'  }
 
 	configuration "windows"
-		defines { [[TENGINE_HOME_PATH='"T-Engine"']], 'SELFEXE_WINDOWS'  }
+		defines { [[TENGINE_HOME_PATH="T-Engine"]], 'SELFEXE_WINDOWS'  }
 	configuration "macosx"
-		defines { [[TENGINE_HOME_PATH='".t-engine"']], "USE_TENGINE_MAIN", 'SELFEXE_MACOSX'  }
+		defines { [[TENGINE_HOME_PATH=".t-engine"]], "USE_TENGINE_MAIN", 'SELFEXE_MACOSX'  }
 
 	configuration {"Debug"}
 		postbuildcommands { "cp ../bin/Debug/te4runner.tec ../", }

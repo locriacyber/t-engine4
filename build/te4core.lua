@@ -40,7 +40,7 @@ project "TEngine"
 	links { "physfs", "lua".._OPTIONS.lua, "fov", "luasocket", "luaprofiler", "lpeg", "tcodimport", "lxp", "expatstatic", "luamd5", "luazlib", "luabitop", "te4-bzip", "te4-wfc", "utf8proc" }
 	if _OPTIONS.discord then defines { "DISCORD_TE4" } end
 	defines { "_DEFAULT_VIDEOMODE_FLAGS_='SDL_HWSURFACE|SDL_DOUBLEBUF'" }
-	defines { [[TENGINE_HOME_PATH='".t-engine"']], "TE4CORE_VERSION="..TE4CORE_VERSION }
+	defines { [[TENGINE_HOME_PATH=".t-engine"]], "TE4CORE_VERSION="..TE4CORE_VERSION }
 	buildoptions { "-O3" }
 
 	if _OPTIONS.relpath=="32" then linkoptions{"-Wl,-rpath -Wl,\\$$ORIGIN/lib "} end
@@ -84,7 +84,7 @@ project "TEngine"
 			"/usr/local/include",
 			"/usr/local/opt/libpng12/include",
 		}
-		defines { "USE_TENGINE_MAIN", 'SELFEXE_MACOSX', [[TENGINE_HOME_PATH='"/Library/Application Support/T-Engine/"']]  }
+		defines { "USE_TENGINE_MAIN", 'SELFEXE_MACOSX', [[TENGINE_HOME_PATH="/Library/Application Support/T-Engine/"]]  }
 		linkoptions {
 			"-framework Cocoa",
 			"-framework OpenGL",
@@ -110,7 +110,7 @@ project "TEngine"
 
 	configuration "windows"
 		links { "mingw32", "SDL2main", "SDL2", "SDL2_ttf", "SDL2_image", "OpenAL32", "vorbisfile", "opengl32", "glu32", "wsock32", "png" }
-		defines { [[TENGINE_HOME_PATH='"T-Engine"']], 'SELFEXE_WINDOWS'  }
+		defines { [[TENGINE_HOME_PATH="T-Engine"]], 'SELFEXE_WINDOWS'  }
 		if _OPTIONS.wincross then
 			prebuildcommands { "i686-pc-mingw32-windres ../src/windows/icon.rc -O coff -o ../src/windows/icon.res" }
 		else
@@ -118,19 +118,19 @@ project "TEngine"
 		end
 		linkoptions { "../src/windows/icon.res" }
 		linkoptions { "-mwindows" }
-		defines { [[TENGINE_HOME_PATH='"T-Engine"']], 'SELFEXE_WINDOWS' }
+		defines { [[TENGINE_HOME_PATH="T-Engine"]], 'SELFEXE_WINDOWS' }
 
 	configuration "linux"
 		libdirs {"/opt/SDL-2.0/lib/"}
 		links { "dl", "SDL2", "SDL2_ttf", "SDL2_image", "png", "openal", "vorbisfile", "GL", "GLU", "m", "pthread" }
 		linkoptions { "-Wl,-E" }
-		defines { [[TENGINE_HOME_PATH='".t-engine"']], 'SELFEXE_LINUX' }
+		defines { [[TENGINE_HOME_PATH=".t-engine"]], 'SELFEXE_LINUX' }
 		if steamlin64 then steamlin64() end
 
 	configuration "bsd"
 		libdirs {"/usr/local/lib/"}
 		links { "SDL2", "SDL2_ttf", "SDL2_image", "png", "openal", "vorbisfile", "GL", "GLU", "m", "pthread" }
-		defines { [[TENGINE_HOME_PATH='".t-engine"']], 'SELFEXE_BSD' }
+		defines { [[TENGINE_HOME_PATH=".t-engine"]], 'SELFEXE_BSD' }
 
 	configuration {"Debug"}
 		if _OPTIONS.wincross then
